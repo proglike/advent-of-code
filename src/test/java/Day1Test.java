@@ -2,11 +2,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,11 +14,26 @@ public class Day1Test {
             "pqr3stu8vwx",
             "a1b2c3d4e5f",
             "treb7uchet");
+    private static final List<String> INPUT_PART2 = List.of(
+            "two1nine",
+            "eightwothree",
+            "abcone2threexyz",
+            "xtwone3four",
+            "4nineeightseven2",
+            "zoneight234",
+            "7pqrstsixteen");
 
     @Test
     void solve_part_1() {
-        int result = Day1.solvePart1(INPUT);
+        int result = Day1.solvePart1(INPUT, Day1::identity);
         assertThat(result).isEqualTo(142);
+    }
+
+
+    @Test
+    void solve_part_2() {
+        int result = Day1.solvePart2(INPUT_PART2);
+        assertThat(result).isEqualTo(281);
     }
 
     @ParameterizedTest
@@ -35,7 +45,7 @@ public class Day1Test {
             "treb7uchet,77",
     })
     void each_line_retuns_its_calibration_value(String line, int expectedCalibrationValue) {
-        int result = Day1.calibrationValueFor(line);
+        int result = Day1.calibrationValueFor(line, Day1::identity);
         assertThat(result).isEqualTo(expectedCalibrationValue);
     }
 
@@ -50,7 +60,7 @@ public class Day1Test {
             "7pqrstsixteen,76",
     })
     void each_line_retuns_its_calibration_value_part_2(String line, int expectedCalibrationValue) {
-        int result = Day1.calibrationValue2For(line);
+        int result = Day1.calibrationValueFor(line, Day1::handleSpelledNumbers);
         assertThat(result).isEqualTo(expectedCalibrationValue);
     }
 
@@ -62,7 +72,7 @@ public class Day1Test {
             "eightwo3,823", */
     })
     void each_line_retuns_its_calibration_value_part_2(String line, String expectedProcessedLine) {
-        String result = Day1.preprocess2(line);
+        String result = Day1.handleSpelledNumbers(line);
         assertThat(result).isEqualTo(expectedProcessedLine);
     }
 
