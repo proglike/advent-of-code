@@ -28,8 +28,8 @@ public class Day1 {
     // encapsulation?
     // advent of code
     public static int calibrationValueFor(String line) {
-        var stringNumber = line.chars()
-                .mapToObj((int c) -> (char) c)
+        var stringNumber = preprocess(line).chars()             // 1d2two4
+                .mapToObj((int c) -> (char) c) // 1d224
                 .filter(Character::isDigit)
                 .map(String::valueOf)
                 .collect(Collectors.joining(""));
@@ -37,4 +37,33 @@ public class Day1 {
         String lastDigit = stringNumber.substring(stringNumber.length() - 1);
         return Integer.parseInt(firstDigit + lastDigit);
     }
+
+    private static String preprocess(String line) {
+        return line;
+    }
+
+    public static int calibrationValue2For(String line) {
+        var stringNumber = preprocess2(line).chars()             // 1d2two4
+                .mapToObj((int c) -> (char) c) // 1d224
+                .filter(Character::isDigit)
+                .map(String::valueOf)
+                .collect(Collectors.joining(""));
+        String firstDigit = stringNumber.substring(0, 1);
+        String lastDigit = stringNumber.substring(stringNumber.length() - 1);
+        return Integer.parseInt(firstDigit + lastDigit);
+    }
+
+    public static String preprocess2(String line) {
+        return line.replaceAll("zero","zero0zero")
+                .replaceAll("one","one1one")
+                .replaceAll("two","two2two")
+                .replaceAll("three","three3three")
+                .replaceAll("four","four4four")
+                .replaceAll("five","five5five")
+                .replaceAll("six","six6six")
+                .replaceAll("seven","seven7seven")
+                .replaceAll("eight","eight8eight")
+                .replaceAll("nine","nine9nine");
+    }
+
 }

@@ -39,13 +39,31 @@ public class Day1Test {
         assertThat(result).isEqualTo(expectedCalibrationValue);
     }
 
-    @Test
-    void name() throws URISyntaxException, IOException {
-        URL inputFile = this.getClass().getClassLoader().getResource("src/main/day1.txt");
+    @ParameterizedTest
+    @CsvSource({
+            "two1nine,29",
+            "eightwothree,83",
+            "abcone2threexyz,13",
+            "xtwone3four,24",
+            "4nineeightseven2,42",
+            "zoneight234,14",
+            "7pqrstsixteen,76",
+    })
+    void each_line_retuns_its_calibration_value_part_2(String line, int expectedCalibrationValue) {
+        int result = Day1.calibrationValue2For(line);
+        assertThat(result).isEqualTo(expectedCalibrationValue);
+    }
 
-        assert inputFile != null;
-        List<String> inputLines = Files.readAllLines(Path.of(inputFile.toURI()));
-
+    @ParameterizedTest
+    @CsvSource({
+            "two,two2two",
+            "eightwothree,eight8eightwo2twothree3three",
+          /*  "1one2,11one2",
+            "eightwo3,823", */
+    })
+    void each_line_retuns_its_calibration_value_part_2(String line, String expectedProcessedLine) {
+        String result = Day1.preprocess2(line);
+        assertThat(result).isEqualTo(expectedProcessedLine);
     }
 
 }
