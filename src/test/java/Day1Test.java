@@ -1,9 +1,8 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day1Test {
 
@@ -30,10 +29,12 @@ public class Day1Test {
     }
 
     private int day1Line(String number) {
-        Stream<Character> chars =  Arrays.asList(number.toCharArray()).stream()
+        var stringNumber = number.chars()
+                .mapToObj((int c) -> Character.valueOf((char) c))
                 .filter(Character::isDigit)
-                ;
-        return Integer.valueOf(chars);
+                .map(String::valueOf)
+                .collect(Collectors.joining(""));
+        return Integer.valueOf(stringNumber);
     }
 
 
