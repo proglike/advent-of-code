@@ -13,15 +13,20 @@ public class Day1 {
             URL inputFile = Day1.class.getClassLoader().getResource("day1.txt");
             assert inputFile != null;
             List<String> inputLines = Files.readAllLines(Path.of(inputFile.toURI()));
-            System.out.println(solvePart1(inputLines, Day1::identity));
-            System.out.println(solvePart2(inputLines));
+            System.out.println(solvePart(inputLines, Day1::identity));
+            System.out.println(solvePart(inputLines,Day1::handleSpelledNumbers));
 
+            // new Day1( Day1::identity).solve(inputLines);
+            // new Day1( Day1::handleSpelledNumbers).solve(inputLines);
+
+            // Day1.part1().solve(inputLines);
+            // Day1.part2().solve(inputLines);
         } catch (Throwable e) {
             System.err.println("Could not load dataset");
         }
     }
 
-    public static int solvePart1(List<String> input, Function<String, String> preprocess) {
+    public static int solvePart(List<String> input, Function<String, String> preprocess) {
         return input.stream()
                 .mapToInt(line -> calibrationValueFor(line, preprocess))
                 .sum();
@@ -29,8 +34,8 @@ public class Day1 {
 
     public static int calibrationValueFor(String line, Function<String, String> preProcessor) {
         var stringNumber = preProcessor.apply(line)
-                .chars()             // 1d2two4
-                .mapToObj((int c) -> (char) c) // 1d224
+                .chars()
+                .mapToObj((int c) -> (char) c)
                 .filter(Character::isDigit)
                 .map(String::valueOf)
                 .collect(Collectors.joining(""));
@@ -57,9 +62,4 @@ public class Day1 {
                 .replaceAll("nine", "nine9nine");
     }
 
-    public static int solvePart2(List<String> input) {
-        return input.stream()
-                .mapToInt(line -> calibrationValueFor(line, line1 -> handleSpelledNumbers(line1)))
-                .sum();
-    }
 }

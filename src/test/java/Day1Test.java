@@ -25,14 +25,14 @@ public class Day1Test {
 
     @Test
     void solve_part_1() {
-        int result = Day1.solvePart1(INPUT, Day1::identity);
+        int result = Day1.solvePart(INPUT, Day1::identity);
         assertThat(result).isEqualTo(142);
     }
 
 
     @Test
     void solve_part_2() {
-        int result = Day1.solvePart2(INPUT_PART2);
+        int result = Day1.solvePart(INPUT_PART2,Day1::handleSpelledNumbers);
         assertThat(result).isEqualTo(281);
     }
 
