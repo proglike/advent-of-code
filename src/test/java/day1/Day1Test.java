@@ -1,3 +1,6 @@
+package day1;
+
+import day1.Day1;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -32,7 +35,7 @@ public class Day1Test {
 
     @Test
     void solve_part_2() {
-        int result = Day1.solvePart(INPUT_PART2,Day1::handleSpelledNumbers);
+        int result = Day1.solvePart(INPUT_PART2, Day1::handleSpelledNumbers);
         assertThat(result).isEqualTo(281);
     }
 

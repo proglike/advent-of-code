@@ -1,3 +1,5 @@
+package day1;
+
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,11 +18,11 @@ public class Day1 {
             System.out.println(solvePart(inputLines, Day1::identity));
             System.out.println(solvePart(inputLines,Day1::handleSpelledNumbers));
 
-            // new Day1( Day1::identity).solve(inputLines);
-            // new Day1( Day1::handleSpelledNumbers).solve(inputLines);
+            // new day1.Day1( day1.Day1::identity).solve(inputLines);
+            // new day1.Day1( day1.Day1::handleSpelledNumbers).solve(inputLines);
 
-            // Day1.part1().solve(inputLines);
-            // Day1.part2().solve(inputLines);
+            // day1.Day1.part1().solve(inputLines);
+            // day1.Day1.part2().solve(inputLines);
         } catch (Throwable e) {
             System.err.println("Could not load dataset");
         }
