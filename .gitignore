@@ -25,4 +25,5 @@ replay_pid*
 
 *.iml
 .idea/
+target/
 src/main/resources/day1.txt
